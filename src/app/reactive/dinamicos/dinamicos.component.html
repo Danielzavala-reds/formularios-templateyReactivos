@@ -1,1 +1,140 @@
-<p>dinamicos works!</p>
+<h2>Reactivos: <small>dinámicos</small></h2>
+<hr>
+
+<form (ngSubmit)="guardar()" autocomplete="off" [formGroup]="miFormulario">
+
+    <!-- Nombre -->
+    <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Nombre:</label>
+
+        <div class="col-sm-9">
+            <input type="text" 
+            class="form-control" 
+            placeholder="Nombre de la persona" 
+            formControlName="nombre"/>
+
+                <span class="form-text text-danger" *ngIf="noEsValido('nombre')">
+                Este campo es obligatorio
+                </span>
+
+        </div>
+    </div>
+
+    <!-- Agregar Favorito-->
+    <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Agregar:</label>
+
+        <div class="col-sm-9">
+
+            <div class="input-group">
+                <input type="text"
+                class="form-control"
+                [formControl]="nuevoFavorito"
+                placeholder="Agregar favorito"
+                (keyup.enter)="agregarFavorito()"
+                >
+
+                <button class="btn btn-outline-primary"
+                        type="button"
+                        (click)="agregarFavorito()">
+                    Agregar
+                </button>
+
+              
+
+            </div>
+
+            <span class="form-text text-danger" *ngIf="arrValido('favoritos')">
+                Por lo menos debes agregar un elemento favorito
+                </span>
+
+
+        </div>
+    </div>
+
+    <!-- Lista de juegos favoritos -->
+    <div class="row mb-3">
+        <label for="" class="col-sm-3 col-form-label">Favoritos:</label>
+
+        <div class="col-sm-9" formArrayName="favoritos">
+            
+            <div class="input-group mb-1" *ngFor="let favorito of favoritosArr.controls; let i = index">
+                <!-- En el formControlName del array, mandamos a llamar el indice entre corchetes para que tome el valor de i, porque si lo llamamos como string, es como si estuviera buscando un control o una propiedad existente en el ts-->
+                <input 
+                type="text" 
+                class="form-control"
+        
+                [formControlName]="i"/>
+
+                
+
+            <button class="btn btn-outline-danger"
+                    type="button"
+                    (click)="borrar(i)">
+                Eliminar
+            </button>
+                
+            </div>
+
+           
+
+           
+
+        </div>
+    </div>
+
+    <div class="row ">
+        
+
+        <!-- Para que el ngSubmit funcione asegurarnos de que el button sea de tipo submit, también podemos mandar a llamar el método desde el button -->
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary float-end" >
+                Guardar
+            </button>
+        </div>
+    </div>
+
+    
+
+
+
+
+</form>
+
+<button (click)="arrays()" class="btn btn-outline-info float-end">
+    Array
+</button>
+
+
+<!-- <span>Persona</span>
+<pre> {{persona | json}} </pre> -->
+
+<div class="row">
+    <div class="col">
+        <span>Valid</span>
+        <pre> {{miFormulario.valid}} </pre>
+        <br>
+        
+        <span>Pristine</span>   
+        <pre> {{miFormulario.pristine}} </pre>
+        <br>
+        
+        <span>Touched</span>
+        <pre> {{miFormulario.touched}} </pre>
+        <br>
+        
+        <span>Value</span>
+        <pre> {{miFormulario.value | json }} </pre>
+        <br>
+        
+        <span>Agrear Juego</span>
+        <pre> {{ nuevoFavorito.valid }} </pre>
+        <br>
+        <pre> {{nuevoFavorito.value | json}} </pre>
+
+
+        <!-- <span>Precio</span>
+        <pre> {{miFormulario.controls['precio'].errors | json }} </pre> -->
+        
+    </div>
+</div>
