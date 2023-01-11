@@ -31,7 +31,7 @@ export class SidemenuComponent {
       texto: 'Switches',
       ruta: './template/switches'
     }
-  ]
+  ];
 
   reactiveMenu: MenuItem[] = [
     {
@@ -46,7 +46,20 @@ export class SidemenuComponent {
       texto: 'Switches',
       ruta: './reactive/switches'
     }
-  ]
+  ];
+
+  // La ruta se definio directamente porque el registro y el login ya estand entro del auth, no definimos auth/pages/registro porque no queremos el archivo, si no definir la ruta
+
+  authMenu: MenuItem[] = [
+    {
+      texto: 'Login',
+      ruta: './auth/login'
+    },
+    {
+      texto: 'Registro',
+      ruta: './auth/registro'
+    },
+  ];
 
 
 

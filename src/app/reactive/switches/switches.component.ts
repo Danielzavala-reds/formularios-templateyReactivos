@@ -44,7 +44,12 @@ guardar(){
   delete formVaule.notificaciones;
   this.persona = formVaule;
 
-  this.miFormulario.markAllAsTouched();
+  if(this.miFormulario.invalid){
+    this.miFormulario.markAllAsTouched(); /* Marcar todo como si ha sido tocado, se va campo por campo y lo toca, esto es para que al tocar el botón salte los errores, si los inputs han sido tocados y/o estan vacuas */
+    return 
+};
+
+this.miFormulario.reset();
 }
   
 

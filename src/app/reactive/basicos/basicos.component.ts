@@ -36,8 +36,12 @@ ngOnInit(): void {
 
 // Para no crear multiples métodos para evaluar cada input, mandamos como argumento el campo a evaluar
 campoEsValido(campo: string){
-  return this.miFormulario.controls[campo].errors
-         && this.miFormulario.controls[campo].touched;
+
+  const val1 = this.miFormulario.controls[campo].errors;
+  const val2 = this.miFormulario.controls[campo].touched;
+
+  return this.miFormulario.get('val1')
+         && this.miFormulario.get('val2');
 };
 
 guardar(){
